@@ -1,0 +1,2 @@
+create database BANKING_SYSTEM;
+use BANKING_SYSYTEM
