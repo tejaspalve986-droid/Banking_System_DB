@@ -440,3 +440,89 @@ GROUP BY CUSTOMER_ID
 ORDER BY TOTAL_LOAN_EXPOSURE DESC LIMIT 1;
 
 SELECT BRANCH_ID FROM ACCOUNTS WHERE CUSTOMER_ID =104;
+
+
+-- FUNCTIONS
+
+-- STRING FUNCTIONS
+
+-- CONCAT ----------------------------------------------------------
+
+SELECT CUSTOMER_ID,concat(FIRST_NAME," ",LAST_NAME) AS FULL_NAME
+FROM CUSTOMERS1;
+
+-- UPPER CASE ()------------------------------------------------------------- 
+
+SELECT CUSTOMER_ID,UPPER(concat(FIRST_NAME," ",LAST_NAME) )AS FULL_NAME
+FROM CUSTOMERS1;
+
+-- LOWER CASE ()------------------------------------------------------------- 
+
+SELECT CUSTOMER_ID,LOWER(concat(FIRST_NAME," ",LAST_NAME) )AS FULL_NAME
+FROM CUSTOMERS1;  
+
+-- LENGTTH  ()---------------------------------------------------------------
+-- FIND THE NUMBER LENGTH
+
+SELECT FIRST_NAME,length(FIRST_NAME) AS NAME_LENGTH
+FROM CUSTOMERS1
+order by NAME_LENGTH DESC;
+
+SELECT FIRST_NAME,length(FIRST_NAME) AS NAME_LENGTH
+FROM CUSTOMERS1
+HAVING NAME_LENGTH <5
+order by NAME_LENGTH DESC LIMIT 1 offset 2; -- OFFSET IS USE TO SKIP THIS VALUES
+
+-- CHAR_LENGTH()------------------------------------------------------
+
+-- CALCULATE THE NUMBER OF STRINGS 
+
+SELECT FIRST_NAME,char_length(FIRST_NAME) AS CHARACTER_LENGTH
+FROM CUSTOMERS1;
+
+SELECT char_length("EMP01");
+
+-- LEFT()--------------------------------------------------------------
+-- EXTRECT THE DATA FROM LEFT SIDE
+SELECT FIRST_NAME,left(FIRST_NAME,3) AS FIRST_3_CHAR
+FROM CUSTOMERS1;
+
+-- RIGHT()--------------------------------------------------------------
+-- EXTRACT THE DATA FROM RIGHT SIDE
+
+SELECT PHONE,RIGHT(PHONE,4) AS LAST4DIGITS
+FROM CUSTOMERS1;
+
+SELECT CUSTOMER_ID,FIRST_NAME ,concat('XXXXX',RIGHT(PHONE,4)) AS MASKED_PHONE
+FROM CUSTOMERS1;
+
+-- SUBSTRING()------------------------------------------------------------
+-- IT EXTRACTS THE PORTION OF A STRING 
+
+SELECT EMAIL,substring(EMAIL,1,5) AS EMAIL_PART
+FROM CUSTOMERS1;
+
+-- SUBSTRING_INDEX()
+
+SELECT EMAIL,substring_index(EMAIL,"@",1) AS EMAIL_PART
+FROM CUSTOMERS1;
+
+-- TRIM()------------------------------------------------------------------
+-- REMOVE USELESS SPACES
+
+SELECT trim("TEJAS PALVE                 ")AS NAME
+FROM CUSTOMERS1;
+
+-- REPLACE()--------------------------------------------------------------
+-- REPLACE TE VALUE 
+
+SELECT EMAIL,REPLACE(EMAIL,"GMAIL.COM","EMAIL.COM") AS EMAILS 
+FROM CUSTOMERS1;
+
+-- LOCATE()----------------------------------------------------------------
+-- FIND THE POSITION OF THE CHARACTER/STING
+
+SELECT EMAIL,locate('@',EMAIL) AS POSITION
+FROM CUSTOMERS1;
+
+-- MATH FUNCTIONS --------------------------------------------------------
